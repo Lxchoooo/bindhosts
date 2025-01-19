@@ -315,7 +315,7 @@ toggle_updatejson() {
 # no one is looking at unencrypted data because everyone wants encrypted data to crack
 download() {
 	if command -v curl > /dev/null 2>&1; then
-		curl --connect-timeout 10 -s "$1"
+		curl --connect-timeout 10 -Z -Ls "$1"
         else
 		busybox wget -T 10 --no-check-certificate -qO - "$1"
         fi
@@ -332,10 +332,11 @@ adblock() {
 			}
         # download routine start!
 	for url in $(sed '/#/d' $PERSISTENT_DIR/sources.txt | grep http) ; do 
-		echo "[+] grabbing.."
-		echo "[>] $url"
-		download "$url" >> $rwdir/temphosts || echo "[x] failed downloading $url"
+		echo "[>] fetching $url"
+		(download "$url" >> $rwdir/temphosts || echo "[x] failed downloading $url") &
 	done
+	# wait until all download jobs done
+	wait
 	# if temphosts is empty
 	# its either user did something
 	# or inaccessible urls / no internet
@@ -348,7 +349,7 @@ adblock() {
 	# localhost
 	printf "127.0.0.1 localhost\n::1 localhost\n" > $target_hostsfile
 	# always restore user's custom rules
-	sed '/#/d' $PERSISTENT_DIR/custom.txt >> $target_hostsfile
+	sed '/#/d' $PERSISTENT_DIR/custom*.txt >> $target_hostsfile
 	# blacklist.txt
 	for i in $(sed '/#/d' $PERSISTENT_DIR/blacklist.txt ); do echo "0.0.0.0 $i" >> $rwdir/temphosts; done
 	# whitelist.txt
@@ -371,7 +372,7 @@ reset() {
 	# localhost
 	printf "127.0.0.1 localhost\n::1 localhost\n" > $target_hostsfile
 	# always restore user's custom rules
-	sed '/#/d' $PERSISTENT_DIR/custom.txt >> $target_hostsfile
+	sed '/#/d' $PERSISTENT_DIR/custom*.txt >> $target_hostsfile
         string="description=status: reset 🤐 | $(date)"
         sed -i "s/^description=.*/$string/g" $MODDIR/module.prop
         echo "[+] hosts file reset!"
@@ -461,6 +462,10 @@ tcpdump () {
 	fi
 }
 
+hosts_lastmod () {
+	echo "[+] Last update at: $(date -r $target_hostsfile)"
+}
+
 show_help () {
 	echo "[%] $( grep '^description=' $MODDIR/module.prop | sed 's/description=//' )"
 	echo "usage:"
@@ -485,6 +490,7 @@ case "$1" in
 	--enable-cron) enable_cron; exit ;;
 	--disable-cron) disable_cron; exit ;;
 	--toggle-updatejson) toggle_updatejson; exit ;;
+	--hosts-lastmod) hosts_lastmod; exit ;;
 	--help|*) show_help; exit ;;
 esac
 
