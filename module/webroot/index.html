@@ -101,7 +101,7 @@
 			</div>
 			<div class="category-container">
 				<div class="input-box-wrapper">
-					<textarea class="input-box" id="custom-input" type="text" placeholder="93.184.215.14 example.com"></textarea>
+					<textarea autocapitalize="off" class="input-box" id="custom-input" type="text" placeholder="93.184.215.14 example.com"></textarea>
 				</div>
 				<button class="add-btn" id="custom-add" onclick="handleAdd('custom')">+</button>
 			</div>
@@ -118,7 +118,7 @@
 			</div>
 			<div class="category-container">
 				<div class="input-box-wrapper">
-					<textarea class="input-box" id="sources-input" type="text" placeholder="https://adaway.org/hosts.txt"></textarea>
+					<textarea autocapitalize="off" class="input-box" id="sources-input" type="text" placeholder="https://adaway.org/hosts.txt"></textarea>
 				</div>
 				<button class="add-btn" id="sources-add" onclick="handleAdd('sources')">+</button>
 			</div>
@@ -135,7 +135,7 @@
 			</div>
 			<div class="category-container">
 				<div class="input-box-wrapper">
-					<textarea class="input-box" id="blacklist-input" type="text" placeholder="host.to.block"></textarea>
+					<textarea autocapitalize="off" class="input-box" id="blacklist-input" type="text" placeholder="online-casino.com"></textarea>
 				</div>
 				<button class="add-btn" id="blacklist-add" onclick="handleAdd('blacklist')">+</button>
 			</div>
@@ -152,7 +152,7 @@
 			</div>
 			<div class="category-container">
 				<div class="input-box-wrapper">
-					<textarea class="input-box" id="whitelist-input" type="text" placeholder="domain.not.to.block"></textarea>
+					<textarea autocapitalize="off" class="input-box" id="whitelist-input" type="text" placeholder="s.youtube.com"></textarea>
 				</div>
 				<button class="add-btn" id="whitelist-add" onclick="handleAdd('whitelist')">+</button>
 			</div>
@@ -168,11 +168,13 @@
 				<h2 data-i18n="control_panel.language"></h2>
 				<button class="close-btn" onclick="closeOverlay('language-help')">&#x2715;</button>
 			</div>
-			<div class="language-menu"></div>
-			<button class="docs-btn" id="translate-btn" data-type="translate">
-			    <div class="language-improve" id="bad-translation" data-i18n="control_panel.bad_translation"></div>
-			    <div class="language-improve" id="add-language" data-i18n="control_panel.add_language"></div>
-			</button>
+			<div class="language-content">
+    			<div class="language-menu"></div>
+    			<button class="docs-btn" id="translate-btn" data-type="translate">
+    			    <div class="language-improve" id="bad-translation" data-i18n="control_panel.bad_translation"></div>
+    			    <div class="language-improve" id="add-language" data-i18n="control_panel.add_language"></div>
+    			</button>
+			</div>
 		</div>
 	</div>
 	<div id="custom-help" class="overlay">

@@ -528,6 +528,7 @@ button.delete-btn {
     padding: 15px 35px;
     width: auto;
     max-width: auto;
+    max-height: 80vh;
     flex-direction: column;
     align-items: center;
 }
@@ -536,6 +537,12 @@ button.delete-btn {
     margin-top: 15px;
     margin-bottom: 15px;
     width: 100%;
+}
+
+.language-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .language-option {
