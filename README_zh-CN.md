@@ -1,8 +1,8 @@
-[English](https://github.com/bindhosts/bindhosts/blob/master/README.md) | **简体中文**
+[English](README.md) | **简体中文**
 
 # bindhosts
 
-适用于APatch、KernelSU 和 Magisk 的 Systemless hosts
+适用于 APatch、KernelSU 和 Magisk 的 Systemless hosts
 
 完全无依赖，可自我更新。
 
@@ -28,11 +28,11 @@
 
 - [使用手册](Documentation/usage_zh-CN.md)
 - [隐藏指南](Documentation/hiding_zh-CN.md)
-- [运行模式](Documentation/modes_zh-CN.md)
+- [工作模式](Documentation/modes_zh-CN.md)
 
 ## 链接
 
-- 点击 [此处](https://github.com/bindhosts/bindhosts/releases) 下载bindhosts
+- 点击 [此处](https://github.com/bindhosts/bindhosts/releases) 下载 bindhosts
 - 点击 [此处](Documentation/sources.md) 查看更多信息(开放源代码许可)
 - 点击 [此处](Documentation/localize.md) 参与bindhosts的本地化引导
 

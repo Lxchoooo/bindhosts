@@ -10,7 +10,7 @@ if [ ! -f $MODDIR/system/etc/hosts ]; then
 	cat /system/etc/hosts > $MODDIR/system/etc/hosts
 	printf "127.0.0.1 localhost\n::1 localhost\n" >> "$MODPATH/system/etc/hosts"
 fi
-susfs_clone_perm "$MODDIR/system/etc/hosts" /system/etc/hosts
+hosts_set_perm "$MODDIR/system/etc/hosts"
 
 # detect operating operating_modes
 
@@ -36,9 +36,7 @@ if [ "$KSU_NEXT" = "true" ] && [ "$KSU_KERNEL_VER_CODE" -ge 12183 ]; then
 fi
 
 # ksu+susfs operating_mode
-# due to susfs4ksu policy change, theres a lot of fuckups that will
-# happen if I still try to keep bind mount for them
-# with this I'll be forcing ALL legacy susfs users pre 153 onto overlayfs mode.
+# handle probing for both modern and legacy susfs
 if [ "$KSU" = true ] && [ -f ${SUSFS_BIN} ] ; then
 	if [ "$( ${SUSFS_BIN} show version | head -n1 | sed 's/v//; s/\.//g' )" -ge 153 ]; then
 		echo "bindhosts: post-fs-data.sh - susfs 153+ found" >> /dev/kmsg
@@ -92,6 +90,10 @@ skip_mount=1
 # and I will probably be using letters
 [ $skip_mount = 0 ] && ( [ -f $MODDIR/skip_mount ] && rm $MODDIR/skip_mount )
 [ $skip_mount = 1 ] && ( [ ! -f $MODDIR/skip_mount ] && touch $MODDIR/skip_mount )
+
+# disable all other hosts module
+disable_hosts_modules_verbose=2
+disable_hosts_modules
 
 # debugging
 echo "bindhosts: post-fs-data.sh - probing done" >> /dev/kmsg

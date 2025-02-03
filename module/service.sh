@@ -52,7 +52,7 @@ apatch_hfr() {
 	[ ! -f $target_hostsfile ] && {
 		cat /system/etc/hosts > $target_hostsfile
 		printf "127.0.0.1 localhost\n::1 localhost\n" >> $target_hostsfile
-		susfs_clone_perm $target_hostsfile /system/etc/hosts
+		hosts_set_perm "$target_hostsfile"
 		}
 	helper_mode="| hosts_file_redirect 💉"
 	echo "bindhosts: service.sh - mode apatch_hfr" >> /dev/kmsg
@@ -64,7 +64,7 @@ zn_hostsredirect() {
 		mkdir -p /data/adb/hostsredirect
 		cat /system/etc/hosts > $target_hostsfile
 		printf "127.0.0.1 localhost\n::1 localhost\n" >> $target_hostsfile
-		susfs_clone_perm $target_hostsfile /system/etc/hosts
+		hosts_set_perm "$target_hostsfile"
 		}
 	helper_mode="| ZN-hostsredirect 💉"
 	echo "bindhosts: service.sh - mode zn_hostsredirect" >> /dev/kmsg
@@ -126,7 +126,7 @@ esac
 # on $PATH, heres how we abuse it
 if [ -z "$KSU" ] && [ -z "$APATCH" ]; then
 	find_rwdir
-	ln -sf $MODDIR/bindhosts.sh $rwdir/bindhosts
+	ln -sf $MODDIR/bindhosts.sh "$rwdir/bindhosts"
 fi
 
 ##################

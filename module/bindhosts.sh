@@ -28,7 +28,7 @@ echo "[%] standalone hosts-based-adblocking implementation"
 files="custom.txt blacklist.txt sources.txt whitelist.txt"
 for i in $files ; do
 	# if file doesnt exist, write dummy
-	[ ! -f $PERSISTENT_DIR/$i ] && echo "#" > $PERSISTENT_DIR/$i
+	[ ! -f "$PERSISTENT_DIR/$i" ] && echo "#" > "$PERSISTENT_DIR/$i"
 done
 
 adaway_warn() {
@@ -73,16 +73,16 @@ illusion () {
 }
 
 run_crond() {
-	[ ! -d $PERSISTENT_DIR/crontabs ] && {
-		mkdir $PERSISTENT_DIR/crontabs
+	[ ! -d "$PERSISTENT_DIR/crontabs" ] && {
+		mkdir "$PERSISTENT_DIR/crontabs"
 		echo "[+] running crond"
-		busybox crond -bc $PERSISTENT_DIR/crontabs -L /dev/null
+		busybox crond -bc "$PERSISTENT_DIR/crontabs" -L /dev/null
 	}
 }
 
 _month_txt2dec() {
-	local month="$1"
-	case "$(echo "$month" | tr "[:lower:]" "[:upper:]")" in
+	txt2dec_month="$1"
+	case "$( echo "$txt2dec_month" | tr "[:lower:]" "[:upper:]" )" in
 		JAN) echo 1 ;;
 		FEB) echo 2 ;;
 		MAR) echo 3 ;;
@@ -95,13 +95,13 @@ _month_txt2dec() {
 		OCT) echo 10 ;;
 		NOV) echo 11 ;;
 		DEC) echo 12 ;;
-		*) echo $month ;; # Return unconverted if parameter is not JAN-DEC
+		*) echo "$txt2dec_month" ;; # Return unconverted if parameter is not JAN-DEC
 	esac
 }
 
 _day_txt2dec() {
-	local day="$1"
-	case "$(echo "$day" | tr "[:lower:]" "[:upper:]")" in
+	txt2dec_day="$1"
+	case "$( echo "$txt2dec_day" | tr "[:lower:]" "[:upper:]" )" in
 		SUN) echo 0 ;;
 		MON) echo 1 ;;
 		TUE) echo 2 ;;
@@ -109,7 +109,7 @@ _day_txt2dec() {
 		THU) echo 4 ;;
 		FRI) echo 5 ;;
 		SAT) echo 6 ;;
-		*) echo $day ;; # Return unconverted if parameter is not SUN-SAT
+		*) echo "$txt2dec_day" ;; # Return unconverted if parameter is not SUN-SAT
 	esac
 }
 
@@ -259,7 +259,7 @@ custom_cron() {
 		echo "[!] futile cronjob" 
 		echo "[!] syntax: --custom-cron \"0 2 * * *\" " 
 		echo "[!] syntax: --custom-cron \"@hourly\" " 
-		exit 0
+		exit 1
 	fi
 	# run crond
 	run_crond
@@ -283,9 +283,9 @@ disable_cron() {
 	# kill busybox crond that we enabled
 	for i in $(busybox pidof busybox); do 
 		# super leet gamma knife
-		grep -q "bindhosts" /proc/$i/cmdline > /dev/null 2>&1 && {
+		grep -q "bindhosts" "/proc/$i/cmdline" > /dev/null 2>&1 && {
 		echo "[x] killing pid $i"
-		busybox kill -9 $i
+		busybox kill -9 "$i"
 		}
 	done
 	# clean entry
@@ -298,12 +298,13 @@ disable_cron() {
 }
 
 toggle_updatejson() {
-	grep -q "^updateJson" $MODDIR/module.prop && { 
+	if grep -q "^updateJson" $MODDIR/module.prop ; then
 		sed -i 's/updateJson/xpdateJson/g' $MODDIR/module.prop 
 		echo "[x] module updates disabled!" 
-		} || { sed -i 's/xpdateJson/updateJson/g' $MODDIR/module.prop 
+	else
+		sed -i 's/xpdateJson/updateJson/g' $MODDIR/module.prop 
 		echo "[+] module updates enabled!" 
-		}
+	fi
 }
 
 # probe for downloaders
@@ -333,36 +334,35 @@ adblock() {
         # download routine start!
 	for url in $(sed '/#/d' $PERSISTENT_DIR/sources.txt | grep http) ; do 
 		echo "[>] fetching $url"
-		(download "$url" >> $rwdir/temphosts || echo "[x] failed downloading $url") &
+		download "$url" >> "$rwdir/temphosts" || echo "[x] failed downloading $url"
+		echo "" >> "$rwdir/temphosts"
 	done
-	# wait until all download jobs done
-	wait
 	# if temphosts is empty
 	# its either user did something
 	# or inaccessible urls / no internet
-	[ ! -s $rwdir/temphosts ] && {
+	[ ! -s "$rwdir/temphosts" ] && {
 		echo "[!] downloaded hosts found to be empty"
 		echo "[!] using old hosts file!"
 		# strip first two lines since thats just localhost
-		tail -n +3 $target_hostsfile > $rwdir/temphosts
+		tail -n +3 $target_hostsfile > "$rwdir/temphosts"
 		}
 	# localhost
 	printf "127.0.0.1 localhost\n::1 localhost\n" > $target_hostsfile
 	# always restore user's custom rules
 	sed '/#/d' $PERSISTENT_DIR/custom*.txt >> $target_hostsfile
 	# blacklist.txt
-	for i in $(sed '/#/d' $PERSISTENT_DIR/blacklist.txt ); do echo "0.0.0.0 $i" >> $rwdir/temphosts; done
+	for i in $(sed '/#/d' $PERSISTENT_DIR/blacklist.txt ); do echo "0.0.0.0 $i" >> "$rwdir/temphosts"; done
 	# whitelist.txt
 	echo "[+] processing whitelist"
 	# make sure tempwhitelist isnt empty
 	# or it will grep out nothingness from everything
 	# which actually greps out everything.
-	echo "256.256.256.256 bindhosts" > $rwdir/tempwhitelist
-	for i in $(sed '/#/d' $PERSISTENT_DIR/whitelist.txt); do echo "0.0.0.0 $i" ; done >> $rwdir/tempwhitelist
+	echo "256.256.256.256 bindhosts" > "$rwdir/tempwhitelist"
+	for i in $(sed '/#/d' $PERSISTENT_DIR/whitelist.txt); do echo "0.0.0.0 $i" ; done >> "$rwdir/tempwhitelist"
 	# sed strip out everything with #, double space to single space, replace all 127.0.0.1 to 0.0.0.0
 	# then sort uniq, then grep out whitelist.txt from it
-	sed -i '/#/d; s/  */ /g; /^$/d; s/\r$//; s/127.0.0.1/0.0.0.0/' $rwdir/temphosts
-	sort -u "$rwdir/temphosts" | grep -Fxvf $rwdir/tempwhitelist >> $target_hostsfile
+	sed -i '/#/d; /!/d; s/  */ /g; /^$/d; s/\r$//; s/127.0.0.1/0.0.0.0/g' "$rwdir/temphosts"
+	sort -u "$rwdir/temphosts" | grep -Fxvf "$rwdir/tempwhitelist" >> $target_hostsfile
 	# mark it, will be read by service.sh to deduce
 	echo "# bindhosts v$versionCode" >> $target_hostsfile
 }
@@ -393,7 +393,7 @@ run() {
 	# ready for reset again
 	(cat $PERSISTENT_DIR/*.txt; date +%F) | busybox crc32 > $PERSISTENT_DIR/bindhosts_state
 	# cleanup
-	rm -f $rwdir/temphosts $rwdir/tempwhitelist $PERSISTENT_DIR/bindhosts_backup > /dev/null 2>&1
+	rm -f "$rwdir/temphosts" "$rwdir/tempwhitelist" "$PERSISTENT_DIR/bindhosts_backup" > /dev/null 2>&1
 }
 
 # adaway is installed and hosts are modified by adaway, dont overthrow
@@ -439,20 +439,19 @@ action () {
 	# we implement a simple lockfile logic around here to
 	# prevent multiple instances.
 	# warn and dont run if lockfile exists
-	[ -f $rwdir/bindhosts_lockfile ] && {
+	[ -f "$rwdir/bindhosts_lockfile" ] && {
 		echo "[*] already running!"
-		# keep exit 0 here since this is a single instance lock
-		exit 0
+		exit 1
 		}
 	# if lockfile isnt there, we create one
-	[ ! -f $rwdir/bindhosts_lockfile ] && touch $rwdir/bindhosts_lockfile
+	[ ! -f "$rwdir/bindhosts_lockfile" ] && touch "$rwdir/bindhosts_lockfile"
 
 	# toggle start!
 	if [ -f $PERSISTENT_DIR/bindhosts_state ]; then
 		# handle rule changes, add date change detect, I guess a change of 1 day to update is sane.
 		newhash=$( (cat $PERSISTENT_DIR/*.txt; date +%F) | busybox crc32 )
 		oldhash=$(cat $PERSISTENT_DIR/bindhosts_state)
-		if [ $newhash = $oldhash ]; then
+		if [ "$newhash" = "$oldhash" ]; then
 			# well if theres no rule change
 			# we can have user toggle onto reset/restore
 			quick_reset_restore
@@ -470,7 +469,7 @@ action () {
 	fi
 
 	# cleanup lockfile
-	[ -f $rwdir/bindhosts_lockfile ] && rm $rwdir/bindhosts_lockfile > /dev/null 2>&1
+	[ -f "$rwdir/bindhosts_lockfile" ] && rm "$rwdir/bindhosts_lockfile" > /dev/null 2>&1
 }
 
 tcpdump () {
@@ -485,7 +484,7 @@ tcpdump () {
 	else
 		echo "[!] tcpdump not found"
 		echo "[x] bailing out"
-		exit 0
+		exit 1
 	fi
 }
 
@@ -493,12 +492,24 @@ hosts_lastmod () {
 	echo "[+] Last update at: $(date -r $target_hostsfile)"
 }
 
+hosts_query () {
+	shift
+	if [ -z "$1" ]; then 
+		echo "[!] empty query"
+		echo "[!] example usage: bindhosts --query doubleclick.net"
+		return
+	fi
+	printf "Hosts \tDoamin\n"
+	grep "$1" "$target_hostsfile" || echo "[!] no match found"
+}
+
 show_help () {
 	echo "[%] $( grep '^description=' $MODDIR/module.prop | sed 's/description=//' )"
 	echo "usage:"
 	printf " --action \t\tsimulate action.sh\n"
 	printf " --tcpdump \t\tsniff dns requests via tcpdump\n"
-	printf " --force-update \t\tforce an update\n" 
+	printf " --query <URL> \t\tcheck hosts file for pattern\n"
+	printf " --force-update \tforce an update\n" 
 	printf " --force-reset \t\tforce a reset\n"
 	printf " --custom-cron \t\tcustom update schedule\n"
 	printf "\t\t\tif you do NOT know this, use --enable-cron\n"
@@ -511,6 +522,7 @@ show_help () {
 case "$1" in 
 	--action) action; exit ;;
 	--tcpdump) tcpdump; exit ;;
+	--query) hosts_query "$@"; exit ;;
 	--force-update) run; exit ;;
 	--force-reset) reset; exit ;;
 	--custom-cron) custom_cron "$@"; exit ;;
