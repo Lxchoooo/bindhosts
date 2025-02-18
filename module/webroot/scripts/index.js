@@ -214,7 +214,7 @@ async function updateStatusFromModuleProp() {
     } catch (error) {
         console.error("Failed to read description from module.prop:", error);
         if (typeof ksu !== 'undefined' && ksu.mmrl) {
-            updateStatus("Please enable JavaScript API in MMRL settings:\n1. Settings\n2. Security\n3. Allow JavaScript API\n4. Bindhosts\n5. Enable both option");
+            updateStatus("Please enable JavaScript API in MMRL settings:\n1. Settings\n2. Security\n3. Allow JavaScript API\n4. Bindhosts\n5. Enable Allow Advanced KernelSU API");
         } else {
             updateStatus("Error reading description from module.prop");
         }
@@ -702,7 +702,7 @@ cronContainer.addEventListener('click', async function () {
 
 // Initial load
 window.onload = () => {
-    adjustHeaderForMMRL();
+    checkMMRL();
     ["custom", "sources", "blacklist", "whitelist"].forEach(loadFile);
     attachAddButtonListeners();
     attachHelpButtonListeners();
@@ -725,12 +725,28 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // Function to check if running in MMRL
-function adjustHeaderForMMRL() {
+function checkMMRL() {
     if (typeof ksu !== 'undefined' && ksu.mmrl) {
-        console.log("Running in MMRL");
+        // Adjust inset
         header.style.top = 'var(--window-inset-top)';
         actionButton.style.bottom = 'calc(var(--window-inset-bottom) + 25px)';
         headerBlock.style.display = 'block';
+
+        // Set status bars theme based on device theme
+        try {
+            $bindhosts.setLightStatusBars(!window.matchMedia('(prefers-color-scheme: dark)').matches)
+        } catch (error) {
+            console.log("Error setting status bars theme:", error)
+        }
+
+        // Request API permission
+        try {
+            $bindhosts.requestAdvancedKernelSUAPI();
+        } catch (error) {
+            console.log("Error requesting API:", error);
+        }
+    } else {
+        console.log("Not running in MMRL environment.");
     }
 }
 

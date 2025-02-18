@@ -36,6 +36,10 @@
   - Lite: https://raw.githubusercontent.com/badmojr/1Hosts/master/Lite/hosts.txt
   - Pro: https://raw.githubusercontent.com/badmojr/1Hosts/master/Pro/hosts.txt
 
+### [turtlecute](https://github.com/Turtlecute33/toolz)
+  - For easy pass on: [Ad Block Test](https://adblock.turtlecute.org/)
+  - https://raw.githubusercontent.com/Turtlecute33/toolz/refs/heads/master/src/d3host.txt
+
 ### [andryou](https://gitlab.com/andryou/block)
   - Chibi: https://gitlab.com/andryou/block/raw/master/chibi
   - Kouhai: https://gitlab.com/andryou/block/raw/master/kouhai

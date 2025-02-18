@@ -85,4 +85,11 @@ mode=8
       Adaway compatible
       hiding: good but ksu_susfs_bind is easier
 
+mode=9
+     ksu_susfs bind_kstat mode, mount --bind with spoofed kstat
+        KernelSU only
+        Requires susfs-patched kernel and userspace tool
+     Adaway compatible
+     for people with failing mode 1, opt-in only
+
 # EOF

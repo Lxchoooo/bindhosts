@@ -14,6 +14,7 @@ find_rwdir() {
 	rwdir=$MODDIR
 	[ -w /sbin ] && rwdir=/sbin
 	[ -w /debug_ramdisk ] && rwdir=/debug_ramdisk
+	[ -w /dev ] && rwdir=/dev
 }
 
 disable_hosts_modules() {
