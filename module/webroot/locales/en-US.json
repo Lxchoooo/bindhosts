@@ -12,8 +12,21 @@
         "adaway": "Reset hosts in Adaway before continuing",
         "dev_opt": "Developer option enabled",
         "dev_opt_true": "Developer option already enabled",
-        "dev_opt_fail": "Error enabling developer option",
-        "reboot": "Reboot to take effect, tap to reboot"
+        "reboot": "Reboot to take effect, tap to reboot",
+        "save": "Save",
+        "saved": "File saved to",
+        "save_fail": "Failed to save file",
+        "file_too_large": "File edit is not supported on large file",
+        "file_name_empty": "File name cannot be empty",
+        "show_all": "Show All",
+        "more": "More"
+    },
+    "query": {
+        "title": "Host Query",
+        "host_ip": "IP",
+        "host_domain": "Domain",
+        "remove_prompt": "Whitelisted",
+        "remove_error": "Failed to whitelist"
     },
     "control_panel": {
         "title": "Control Panel",
@@ -39,8 +52,12 @@
         "title": "Custom Rules",
         "guide1": "Add custom redirects here",
         "example": "Example:",
+        "format": "Format:",
         "warning": "WARNING: Custom rules are loaded on both run and reset!",
         "prompt_fail": "is already in custom rule"
+    },
+    "import_custom": {
+        "title": "Import Custom Rules"
     },
     "source": {
         "title": "Sources",
@@ -63,10 +80,34 @@
         "example": "Example:",
         "prompt_fail": "is already in whitelist"
     },
+    "sources_whitelist": {
+        "title": "Whitelist Sources",
+        "guide1": "Add whitelist sources here",
+        "format": "Format:",
+        "example": "Example:",
+        "prompt_fail": "is already in whitelist source"
+    },
     "mode": {
         "button": "Mode",
         "title": "Operation Mode",
         "detail": "Learn More",
         "reset": "Reset (auto)"
+    },
+    "more": {
+        "title": "More",
+        "documents": "Documents",
+        "sources": "Sources",
+        "usage": "Usage",
+        "modes": "Modes",
+        "hiding": "Hiding",
+        "faq": "FAQ",
+        "support": "Support",
+        "support_issue": "Report an issue"
+    },
+    "confirmation": {
+        "title": "Confirm Remove?",
+        "message": "Are you sure you want to remove",
+        "cancel": "Cancel",
+        "remove": "Remove"
     }
 }

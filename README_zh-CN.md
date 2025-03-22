@@ -32,9 +32,10 @@
 
 ## 链接
 
+- 点击 [此处](Documentation/faq.md) 查看常见问题
 - 点击 [此处](https://github.com/bindhosts/bindhosts/releases) 下载 bindhosts
-- 点击 [此处](Documentation/sources.md) 查看更多信息(开放源代码许可)
-- 点击 [此处](Documentation/localize.md) 参与bindhosts的本地化引导
+- 点击 [此处](Documentation/sources.md) 查看更多 hosts 规则源
+- 点击 [此处](Documentation/localize.md) 了解 bindhosts 的本地化流程
 
 ## 帮助与支持
 

@@ -9,14 +9,6 @@ hosts_set_perm() {
 	busybox chcon --reference="/system" "$1"
 }
 
-# simple af writable dir lookup
-find_rwdir() {
-	rwdir=$MODDIR
-	[ -w /sbin ] && rwdir=/sbin
-	[ -w /debug_ramdisk ] && rwdir=/debug_ramdisk
-	[ -w /dev ] && rwdir=/dev
-}
-
 disable_hosts_modules() {
 	for module in /data/adb/modules/*; do
 	id=$(basename "$module")

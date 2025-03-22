@@ -12,8 +12,21 @@
         "adaway": "Resetta hosts in Adaway prima di continuare",
         "dev_opt": "Opzione sviluppatore abilitata",
         "dev_opt_true": "Opzione sviluppatore già abilitata",
-        "dev_opt_fail": "Errore durante l'abilitazione dell'opzione sviluppatore",
-        "reboot": "Riavvia per rendere effettivo, tocca per riavviare"
+        "reboot": "Riavvia per rendere effettivo, tocca per riavviare",
+        "save": "Salva",
+        "saved": "File salvato in",
+        "save_fail": "Errore nel salvataggio del file",
+        "file_too_large": "Modifica file non supportata su file grandi",
+        "file_name_empty": "Il nome del file non può essere vuoto",
+        "show_all": "Mostra tutti",
+        "more": "altro"
+    },
+    "query": {
+        "title": "Query Host",
+        "host_ip": "IP",
+        "host_domain": "Dominio",
+        "remove_prompt": "Whitelist",
+        "remove_error": "Errore nell'aggiunta alla whitelist"
     },
     "control_panel": {
         "title": "Panello di Controllo",
@@ -39,8 +52,12 @@
         "title": "Regole Personalizzate",
         "guide1": "Aggiungi qui i reindirizzamenti personalizzati",
         "example": "Esempio:",
+        "format": "Formato:",
         "warning": "ATTENZIONE: le regole personalizzate vengono caricate sia durante l'esecuzione che durante il reset!",
         "prompt_fail": "è già nella regola personalizzata"
+    },
+    "import_custom": {
+        "title": "Importa Regole Personalizzate"
     },
     "source": {
         "title": "Fonti",
@@ -63,10 +80,34 @@
         "example": "Esempio:",
         "prompt_fail": "è già nella whitelist"
     },
+    "sources_whitelist": {
+        "title": "Fonti Whitelist",
+        "guide1": "Aggiungi qui le fonti della whitelist",
+        "format": "Formato:",
+        "example": "Esempio:",
+        "prompt_fail": "è già nella fonte whitelist"
+    },
     "mode": {
         "button": "Modalità",
         "title": "Modalità di funzionamento",
         "detail": "Saperne di più",
         "reset": "Reset (auto)"
+    },
+    "more": {
+        "title": "Altro",
+        "documents": "Documenti",
+        "sources": "Fonti",
+        "usage": "Utilizzo",
+        "modes": "Modalità",
+        "hiding": "Nascondi",
+        "faq": "FAQ",
+        "support": "Supporto",
+        "support_issue": "Segnala un problema"
+    },
+    "confirmation": {
+        "title": "Confermare eliminazione?",
+        "message": "Sei sicuro di voler eliminare",
+        "cancel": "Annulla",
+        "remove": "Elimina"
     }
 }

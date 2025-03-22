@@ -1,0 +1,156 @@
+.document-content {
+    background-color: #fff;
+    overflow: hidden;
+    transform: translateX(100%);
+    transition: transform 0.2s ease;
+    touch-action: pan-y;
+    z-index: 4;
+}
+
+.document-cover {
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 3;
+    transition: opacity 0.2s ease;
+}
+
+#about-document-content {
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
+    padding: 20px;
+    padding-top: 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+    touch-action: pan-y;
+}
+
+.file-name-editor {
+    display: none;
+    font-weight: normal;
+}
+
+.file-name-editor input {
+    min-width: 2em;
+    background-color: transparent;
+    color: inherit;
+    font-size: 21px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #ccc;
+}
+
+#edit-content {
+    padding: 0;
+    transform: translateX(100%);
+    transition: transform 0.2s ease;
+    touch-action: pan-y;
+    z-index: 4;
+}
+
+.editor-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.line-numbers {
+    position: absolute;
+    left: 0;
+    top: 0;
+    min-height: 100%;
+    width: 30px;
+    padding: 5px 3px 30px 0;
+    background-color: #ddd;
+    border-right: 1px solid #ccc;
+    text-align: right;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #444;
+    overflow-x: hidden;
+    z-index: 1;
+    transition: padding-bottom 0.2s ease;
+    user-select: none;
+}
+
+#edit-input {
+    position: relative;
+    background-color: #f5f5f5;
+    height: 100%;
+    width: 100%;
+    color: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    border: none;
+    outline: none;
+    resize: none;
+    padding-left: 40px;
+    padding-top: 5px;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+    transition: padding-bottom 0.2s ease;
+    overflow-y: auto;
+    white-space: nowrap;
+    scrollbar-color: #888 #f5f5f5;
+}
+
+#edit-input::-webkit-scrollbar {
+    width: 25px;
+    transition: width 0.2s ease;
+}
+
+#edit-input::-webkit-scrollbar-track {
+    background: #eee;
+}
+
+#edit-input::-webkit-scrollbar-thumb {
+    min-height: 40px;
+    background-color: #888;
+    border-radius: 5px;
+}
+
+.back-button {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    user-select: none;
+    position: absolute;
+    left: 0;
+    background-color: #F5F5F5;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+    .document-content {
+        background-color: #343434;
+    }
+
+    .back-button {
+        background-color: #151515;
+    }
+
+    .line-numbers {
+        background-color: #666666;
+        border-right-color: #444;
+        color: #eee;
+    }
+
+    #edit-input {
+        background-color: #121212;
+    }
+
+    #edit-input::-webkit-scrollbar-track {
+        background: #1e1e1e;
+    }
+
+    #edit-input::-webkit-scrollbar-thumb {
+        background-color: #666;
+    }
+}

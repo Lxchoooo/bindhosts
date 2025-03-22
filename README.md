@@ -26,6 +26,7 @@ Fully standalone, self-updating.
 
 ## Resources
 
+- [FAQ](Documentation/faq.md)
 - [Usage](Documentation/usage.md)
 - [Hiding](Documentation/hiding.md)
 - [Operating Modes](Documentation/modes.md)

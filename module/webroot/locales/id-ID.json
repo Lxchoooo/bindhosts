@@ -12,8 +12,21 @@
         "adaway": "Atur ulang hosts di Adaway sebelum melanjutkan",
         "dev_opt": "Opsi pengembang diaktifkan",
         "dev_opt_true": "Opsi pengembang telah di diaktifkan",
-        "dev_opt_fail": "Gagal mengaktifkan opsi pengembang",
-        "reboot": "Reboot untuk menerapkan, tap untuk reboot"
+        "reboot": "Reboot untuk menerapkan, tap untuk reboot",
+        "save": "Simpan",
+        "saved": "File disimpan ke",
+        "save_fail": "Gagal menyimpan file",
+        "file_too_large": "Hanya edit file yang diizinkan pada file besar",
+        "file_name_empty": "Nama file tidak boleh kosong",
+        "show_all": "Tampilkan semua",
+        "more": "lagi"
+    },
+    "query": {
+        "title": "Kueri Host",
+        "host_ip": "IP",
+        "host_domain": "Domain",
+        "remove_prompt": "Whitelist",
+        "remove_error": "Gagal menambahkan ke whitelist"
     },
     "control_panel": {
         "title": "Panel Kontrol",
@@ -39,8 +52,12 @@
         "title": "Aturan kustom",
         "guide1": "Tambahkan pengalihan kustom disini",
         "example": "Contoh:",
+        "format": "Format:",
         "warning": "PERINGATAN: Aturan kustom dimuat saat run dan reset!",
         "prompt_fail": "sudah ada di aturan kustom"
+    },
+    "import_custom": {
+        "title": "Impor Aturan Kustom"
     },
     "source": {
         "title": "Sources",
@@ -63,10 +80,34 @@
         "example": "Contoh:",
         "prompt_fail": "sudah ada di daftar putih"
     },
+    "sources_whitelist": {
+        "title": "Sumber Daftar Putih",
+        "guide1": "Tambahkan sumber daftar putih disini",
+        "format": "Format:",
+        "example": "Contoh:",
+        "prompt_fail": "sudah ada di sumber daftar putih"
+    },
     "mode": {
         "button": "Mode",
         "title": "Mode Operasi",
         "detail": "Pelajari lebih lanjut",
         "reset": "Atur ulang (auto)"
+    },
+    "more": {
+        "title": "Lainnya",
+        "documents": "Dokumen",
+        "sources": "Sumber",
+        "usage": "Penggunaan",
+        "modes": "Mode",
+        "hiding": "Sembunyikan",
+        "faq": "FAQ",
+        "support": "Dukungan",
+        "support_issue": "Laporkan masalah"
+    },
+    "confirmation": {
+        "title": "Hapus Konfirmasi?",
+        "message": "Apakah Anda yakin ingin menghapus",
+        "cancel": "Batal",
+        "remove": "Hapus"
     }
 }

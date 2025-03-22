@@ -12,8 +12,21 @@
         "adaway": "Devam etmeden önce Adaway'deki hosts'u sıfırlayın",
         "dev_opt": "Geliştirici seçeneği etkinleştirildi",
         "dev_opt_true": "Geliştirici seçeneği zaten etkin",
-        "dev_opt_fail": "Geliştirici seçeneği etkinleştirilirken hata oluştu",
-        "reboot": "Etkili olması için yeniden başlatın, yeniden başlatmak için dokunun"
+        "reboot": "Etkili olması için yeniden başlatın, yeniden başlatmak için dokunun",
+        "save": "Kaydet",
+        "saved": "Dosya kaydedildi",
+        "save_fail": "Dosya kaydedilemedi",
+        "file_too_large": "Dosya düzenleme desteği yok",
+        "file_name_empty": "Dosya adı boş olamaz",
+        "show_all": "Tümünü göster",
+        "more": "daha"
+    },
+    "query": {
+        "title": "Host Sorgulama",
+        "host_ip": "IP",
+        "host_domain": "Domain",
+        "remove_prompt": "Beyaz Liste",
+        "remove_error": "Beyaz listeye ekleme başarısız"
     },
     "control_panel": {
         "title": "Kontrol Paneli",
@@ -39,8 +52,12 @@
         "title": "Özel Kurallar",
         "guide1": "Buraya özel yönlendirmeler ekleyin",
         "example": "Örnek:",
+        "format": "Format:",
         "warning": "UYARI: Özel kurallar hem çalıştırmada hem de sıfırlamada yüklenir!",
         "prompt_fail": "Zaten özel kuralda mevcut"
+    },
+    "import_custom": {
+        "title": "Özel Kuralları İçe Aktar"
     },
     "source": {
         "title": "Kaynaklar",
@@ -63,10 +80,34 @@
         "example": "Örnek:",
         "prompt_fail": "Zaten beyaz listede mevcut"
     },
+    "sources_whitelist": {
+        "title": "Beyaz Liste Kaynakları",
+        "guide1": "Buraya beyaz liste kaynakları ekleyin",
+        "format": "Format:",
+        "example": "Örnek:",
+        "prompt_fail": "Zaten beyaz liste kaynağında mevcut"
+    },
     "mode": {
         "button": "Mod",
         "title": "Çalışma Modu",
         "detail": "Daha fazla bilgi edin",
         "reset": "Sıfırla (otomatik)"
+    },
+    "more": {
+        "title": "Daha Fazla",
+        "documents": "Belgeler",
+        "sources": "Kaynaklar",
+        "usage": "Kullanım",
+        "modes": "Modlar",
+        "hiding": "Gizle",
+        "faq": "SSS",
+        "support": "Destek",
+        "support_issue": "Sorun bildir"
+    },
+    "confirmation": {
+        "title": "Silmek istediğinize emin misiniz?",
+        "message": "Bu işlem geri alınamaz",
+        "cancel": "İptal",
+        "remove": "Sil"
     }
 }

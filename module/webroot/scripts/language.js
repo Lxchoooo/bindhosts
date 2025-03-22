@@ -1,54 +1,62 @@
-import { execCommand, activeOverlay, linkRedirect } from './index.js';
 import { setupDocsMenu } from './docs.js';
+import { execCommand, basePath, applyRippleEffect, moduleDirectory } from './util.js';
 
 const languageMenu = document.querySelector('.language-menu');
 
 export let translations = {};
-let currentLang = 'en-US';
 let availableLanguages = ['en-US'];
 
-// Function to check for available language
-export async function initializeAvailableLanguages() {
-    try {
-        const multiLang = await execCommand("find /data/adb/modules/bindhosts/webroot/locales -type f -name '*.json' ! -name 'A-template.json' -exec basename -s .json {} \\;");
-        availableLanguages = multiLang.trim().split('\n');
-        generateLanguageMenu();
-    } catch (error) {
-        console.error('Failed to fetch available languages:', error);
-        availableLanguages = ['en-US'];
-    }
-}
-
-// Function to detect user's default language
-export function detectUserLanguage() {
+/**
+ * Detect user's default language
+ * @returns {Promise<string>} - Detected language code
+ */
+export async function detectUserLanguage() {
     const userLang = navigator.language || navigator.userLanguage;
     const langCode = userLang.split('-')[0];
-    if (availableLanguages.includes(userLang)) {
-        return userLang;
-    } else if (availableLanguages.includes(langCode)) {
-        return langCode;
-    } else {
+
+    try {
+        // Fetch available languages
+        const availableResponse = await fetch('locales/available-lang.json');
+        const availableData = await availableResponse.json();
+        availableLanguages = availableData.languages;
+        generateLanguageMenu();
+
+        // Fetch preferred language
+        const preferredResponse = await fetch('locales/prefered_language.txt');
+        const prefered_language_code = (await preferredResponse.text()).trim();
+
+        // Check if preferred language is valid
+        if (prefered_language_code !== 'default' && availableLanguages.includes(prefered_language_code)) {
+            return prefered_language_code;
+        } else if (availableLanguages.includes(userLang)) {
+            return userLang;
+        } else if (availableLanguages.includes(langCode)) {
+            return langCode;
+        } else {
+            return 'en-US';
+        }
+    } catch (error) {
+        console.error('Error detecting user language:', error);
         return 'en-US';
     }
 }
 
-// Load translations dynamically based on the selected language
-export async function loadTranslations(lang) {
-    try {
-        const response = await fetch(`/locales/${lang}.json`);
-        translations = await response.json();
-        setupDocsMenu(lang);
-        applyTranslations();
-    } catch (error) {
-        console.error(`Error loading translations for ${lang}:`, error);
-        if (lang !== 'en-US') {
-            console.log("Falling back to English.");
-            loadTranslations('en-US');
-        }
-    }
+/**
+ * Load translations dynamically based on the selected language
+ * @returns {Promise<void>}
+ */
+export async function loadTranslations() {
+    const lang = await detectUserLanguage();
+    const response = await fetch(`locales/${lang}.json`);
+    translations = await response.json();
+    applyTranslations();
+    setupDocsMenu(lang);
 }
 
-// Function to apply translations to all elements with data-i18n attributes
+/**
+ * Apply translations to all elements with data-i18n attributes
+ * @returns {void}
+ */
 function applyTranslations() {
     document.querySelectorAll("[data-i18n]").forEach((el) => {
         const keyString = el.getAttribute("data-i18n");
@@ -69,12 +77,25 @@ function applyTranslations() {
     });
 }
 
-// Function to generate the language menu dynamically
+/**
+ * Generate the language menu dynamically
+ * Refer available-lang.json in ./locales for list of languages
+ * @returns {Promise<void>}
+ */
 async function generateLanguageMenu() {
+    if (!languageMenu) return;
     languageMenu.innerHTML = '';
+    
+    // Add System Default option
+    const defaultButton = document.createElement('button');
+    defaultButton.classList.add('language-option', 'ripple-element');
+    defaultButton.setAttribute('data-lang', 'default');
+    defaultButton.textContent = 'System Default';
+    languageMenu.appendChild(defaultButton);
+
     const languagePromises = availableLanguages.map(async (lang) => {
         try {
-            const response = await fetch(`/locales/${lang}.json`);
+            const response = await fetch(`locales/${lang}.json`);
             const data = await response.json();
             return { lang, name: data.language || lang };
         } catch (error) {
@@ -86,20 +107,34 @@ async function generateLanguageMenu() {
     const sortedLanguages = languageData.sort((a, b) => a.name.localeCompare(b.name));
     sortedLanguages.forEach(({ lang, name }) => {
         const button = document.createElement('button');
-        button.classList.add('language-option');
+        button.classList.add('language-option', 'ripple-element');
         button.setAttribute('data-lang', lang);
         button.textContent = name;
-        languageMenu.appendChild(button);
+        if (languageMenu) {
+            languageMenu.appendChild(button);
+        }
     });
+    applyRippleEffect();
 }
 
-languageMenu.addEventListener("click", (e) => {
-    if (e.target.classList.contains("language-option")) {
-        const lang = e.target.getAttribute("data-lang");
-        loadTranslations(lang);
-        const overlay = document.getElementById('language-help');
-        overlay.classList.remove("active");
-        document.body.style.overflow = "";
-        activeOverlay = null;
-    }
-});
+/**
+ * Add memory to the language menu
+ * Restore user language if default language is selected
+ * @returns {void}
+ */
+if (languageMenu) {
+    languageMenu.addEventListener("click", (e) => {
+        if (e.target.classList.contains("language-option")) {
+            const lang = e.target.getAttribute("data-lang");
+            try {
+                execCommand(`
+                    echo "${lang}" > ${basePath}/prefered_language.txt
+                    [ -L ${moduleDirectory}/webroot/locales/prefered_language.txt ] || ln -s ${basePath}/prefered_language.txt ${moduleDirectory}/webroot/locales/prefered_language.txt
+                `);
+            } catch (error) {
+                console.error("Error setting default language:", error);
+            }
+            location.reload();
+        }
+    });
+}

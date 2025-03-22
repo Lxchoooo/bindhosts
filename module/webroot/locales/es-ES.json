@@ -12,8 +12,21 @@
         "adaway": "Restablece los hosts en Adaway antes de continuar",
         "dev_opt": "Opción de desarrollador activada",
         "dev_opt_true": "La opción de desarrollador ya estaba activada",
-        "dev_opt_fail": "Error al activar la opción de desarrollador",
-        "reboot": "Reinicia para aplicar los cambios, toca para reiniciar"
+        "reboot": "Reinicia para aplicar los cambios, toca para reiniciar",
+        "save": "Guardar",
+        "saved": "Archivo guardado en",
+        "save_fail": "Error al guardar el archivo",
+        "file_too_large": "Edición de archivos grandes no es soportada",
+        "file_name_empty": "El nombre del archivo no puede estar vacío",
+        "show_all": "Mostrar todos",
+        "more": "más"
+    },
+    "query": {
+        "title": "Consulta de Host",
+        "host_ip": "IP",
+        "host_domain": "Dominio",
+        "remove_prompt": "Lista Blanca",
+        "remove_error": "Error al añadir a la lista blanca"
     },
     "control_panel": {
         "title": "Panel de Control",
@@ -39,8 +52,12 @@
         "title": "Reglas Personalizadas",
         "guide1": "Añade redirecciones personalizadas aquí",
         "example": "Ejemplo:",
+        "format": "Formato:",
         "warning": "ADVERTENCIA: ¡Las reglas personalizadas se cargan tanto al ejecutarse como al restablecerse!",
         "prompt_fail": "ya está en la regla personalizada"
+    },
+    "import_custom": {
+        "title": "Importar Reglas Personalizadas"
     },
     "source": {
         "title": "Fuentes",
@@ -60,13 +77,37 @@
     "whitelist": {
         "title": "Lista Blanca",
         "guide1": "Todo lo que agregues aquí no será bloqueado",
+        "format": "Formato:",
         "example": "Ejemplo:",
         "prompt_fail": "ya está en la lista blanca"
+    },
+    "sources_whitelist": {
+        "title": "Fuentes de Lista Blanca",
+        "guide1": "Añade fuentes de lista blanca aquí",
+        "example": "Ejemplo:",
+        "prompt_fail": "ya está en la fuente de lista blanca"
     },
     "mode": {
         "button": "Modo",
         "title": "Modo de Operación",
         "detail": "Más información",
         "reset": "Restablecer (automático)"
+    },
+    "more": {
+        "title": "Más",
+        "documents": "Documentos",
+        "sources": "Fuentes",
+        "usage": "Uso",
+        "modes": "Modos",
+        "hiding": "Ocultar",
+        "faq": "FAQ",
+        "support": "Soporte",
+        "support_issue": "Informar un problema"
+    },
+    "confirmation": {
+        "title": "¿Confirmar eliminación?",
+        "message": "¿Estás seguro de querer eliminar",
+        "cancel": "Cancelar",
+        "remove": "Eliminar"
     }
 }

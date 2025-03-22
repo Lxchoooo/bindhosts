@@ -155,4 +155,9 @@ fi
 # update description
 sed -i "s/^description=.*/$string/g" $MODDIR/module.prop
 
+# remove previous linked hosts file and link again
+# hosts location might be different after reboot when user flash znhr/hfr
+rm $MODDIR/webroot/hosts.txt
+ln -s $target_hostsfile $MODDIR/webroot/hosts.txt
+
 # EOF

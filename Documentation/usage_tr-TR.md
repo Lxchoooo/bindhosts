@@ -1,16 +1,16 @@
 # Kullanım Kılavuzu
 
-## Terminal üzerinden kullanım
-![terminal_usage](screenshots/terminal_usage.png)
+## Terminal Üzerinden Kullanım
+<img src="https://github.com/bindhosts/bindhosts/blob/master/Documentation/screenshots/terminal_usage.png?raw=true" width="100%">
 
-bindhosts için çeşitli seçeneklere, Magisk/KernelSU/APatch üzerinde görüntüde gösterildiği şekilde erişebilirsiniz.
-- Termux (veya diğer benzer terminal uygulamaları) üzerinden
+Magisk/KernelSU/APatch için bindhosts’un çeşitli seçeneklerine aşağıdaki yöntemlerle erişebilirsiniz:
+- Termux (veya diğer yaygın terminal uygulamaları) üzerinden:
     ```shell
     > su
     > bindhosts
     ```
 
-- SDK Platform Tools (root shell) üzerinden
+- SDK Platform Tools (kök kabuğu) üzerinden:
     ```shell
     > adb shell
     > su
@@ -19,23 +19,23 @@ bindhosts için çeşitli seçeneklere, Magisk/KernelSU/APatch üzerinde görün
 
 ### Örnek
 ```
-bindhosts --action          Bu komut, bindhosts'un durumuna göre IP adreslerini almak veya hosts dosyasını sıfırlamak için bindhosts eylemini (action) simüle eder.
-bindhosts --tcpdump         Şu anda aktif olan IP adreslerini ağ modunda (WiFi veya veri) tespit eder, Cloudflare gibi DNS servislerinin kullanılmadığından emin olun.
-bindhosts --query <URL>     Hosts dosyasından bir URL sorgular.
-bindhosts --force-reset     Bindhosts'u sıfırlamak için zorlayıcı reset yapar, yani hosts dosyasındaki IP adreslerini sıfırlar.
-bindhosts --custom-cron     Bindhosts için bir cronjob çalıştırılacak zamanı tanımlar.
-bindhosts --enable-cron     Bindhosts için cronjob görevini etkinleştirir, bu görev her gün saat 10'da (varsayılan zaman) kullandığınız listelerin IP adreslerini günceller.
-bindhosts --disable-cron    Daha önce ayarlanmış bindhosts cronjob görevini devre dışı bırakır ve siler.
-bindhosts --help            Yukarıda belirtilen her şeyi görüntüler, hem görselde hem de metin olarak.
+    bindhosts --action          Bu, bindhosts’un durumuna bağlı olarak IP’leri alma veya hosts dosyasını sıfırlama işlemini simüle eder
+    bindhosts --tcpdump         Ağ modunuzda (wifi veya veri) mevcut aktif IP adreslerini koklar (Cloudflare gibi DNS hizmetlerinin kullanılmadığından emin olun)
+    bindhosts --query <URL>     Hosts dosyasında desen araması yapar
+    bindhosts --force-reset     Bindhosts’u zorla sıfırlar, yani hosts dosyasını sıfır IP’ye geri döndürür
+    bindhosts --force-update    Güncellemeye zorlar
+    bindhosts --custom-cron     Bindhosts için bir cronjob’un çalışacağı günün saatini tanımlar
+    bindhosts --enable-cron     Bindhosts için cronjob görevini etkinleştirir ve şu anda kullandığınız listelerin IP’lerini güncellemek için varsayılan olarak sabah 10’da çalışır
+    bindhosts --disable-cron    Daha önce ayarlanmış cronjob görevini devre dışı bırakır ve siler
+    bindhosts --help            Yukarıdaki resimde ve metinde gösterilen her şeyi görüntüler
 ```
 
-## Eylem (Action)
- güncellemeyi ve sıfırlamayı değiştirmek için eyleme (action) basın
+## Eylem
+ Güncelleme ve sıfırlama arasında geçiş yapmak için eyleme basın
  
- ![manager_action](screenshots/manager_action.gif)
+ <img src="https://github.com/bindhosts/bindhosts/blob/master/Documentation/screenshots/manager_action.gif?raw=true" width="100%">
 
-## WebUI
-  özel kurallarınızı, kaynaklarınızı, beyaz listeyi veya kara listeyi ekleyin
+## Web Arayüzü
+  Özel kurallarınızı, kaynaklarınızı, beyaz listenizi veya kara listenizi ekleyin
  
- ![manager_action](screenshots/manager_webui.gif)
-
+ <img src="https://github.com/bindhosts/bindhosts/blob/master/Documentation/screenshots/manager_webui.gif?raw=true" width="100%">

@@ -12,8 +12,21 @@
         "adaway": "Setzen Sie die Hosts in Adaway zurück, bevor Sie fortfahren.",
         "dev_opt": "Entwickler-Option aktiviert",
         "dev_opt_true": "Entwickler-Option bereits aktiviert",
-        "dev_opt_fail": "Fehler beim Aktivieren der Entwickler-Option",
-        "reboot": "Betätigen Sie die Taste zum Neustart, damit die Änderungen wirksam werden."
+        "reboot": "Betätigen Sie die Taste zum Neustart, damit die Änderungen wirksam werden.",
+        "save": "Speichern",
+        "saved": "Datei gespeichert in",
+        "save_fail": "Fehler beim Speichern der Datei",
+        "file_too_large": "Nur Umbenennung wird auf großen Dateien unterstützt",
+        "file_name_empty": "Der Dateiname darf nicht leer sein",
+        "show_all": "Alle anzeigen",
+        "more": "mehr"
+    },
+    "query": {
+        "title": "Host-Abfrage",
+        "host_ip": "IP",
+        "host_domain": "Domain",
+        "remove_prompt": "Whitelist",
+        "remove_error": "Fehler beim Hinzufügen zur Whitelist"
     },
     "control_panel": {
         "title": "Kontrollzentrum",
@@ -39,8 +52,12 @@
         "title": "Benutzerdefinierte Regeln",
         "guide1": "Benutzerdefinierte Weiterleitungen hier hinzufügen",
         "example": "Beispiel:",
+        "format": "Format:",
         "warning": "WARNUNG: Benutzerdefinierte Regeln werden sowohl beim Start als auch beim Zurücksetzen geladen!",
         "prompt_fail": "ist bereits in der benutzerdefinierten Regel"
+    },
+    "import_custom": {
+        "title": "Benutzerdefinierte Regeln importieren"
     },
     "source": {
         "title": "Quellen",
@@ -63,10 +80,34 @@
         "example": "Beispiel:",
         "prompt_fail": "Ist bereits in der Ausnahmeliste"
     },
+    "sources_whitelist": {
+        "title": "Ausnahmeliste Quellen",
+        "guide1": "Fügen Sie hier Ausnahmeliste-Quellen hinzu",
+        "format": "Format:",
+        "example": "Beispiel:",
+        "prompt_fail": "Ist bereits in der Ausnahmeliste-Quelle"
+    },
     "mode": {
         "button": "Modus",
         "title": "Betriebsmodus",
         "detail": "Erfahren Sie mehr",
         "reset": "Zurücksetzen (Auto)"
+    },
+    "more": {
+        "title": "Mehr",
+        "documents": "Dokumente",
+        "sources": "Quellen",
+        "usage": "Verwendung",
+        "modes": "Modi",
+        "hiding": "Verstecken",
+        "faq": "FAQ",
+        "support": "Unterstützung",
+        "support_issue": "Problem melden"
+    },
+    "confirmation": {
+        "title": "Entfernen bestätigen?",
+        "message": "Sind Sie sicher, dass Sie entfernen möchten",
+        "cancel": "Abbrechen",
+        "remove": "Entfernen"
     }
 }

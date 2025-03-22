@@ -91,7 +91,7 @@ fi
 
 # normal flow for persistence
 # move over our files, remove after
-files="blacklist.txt custom.txt sources.txt whitelist.txt"
+files="blacklist.txt custom.txt sources.txt whitelist.txt sources_whitelist.txt"
 for i in $files ; do
 	if [ ! -f "/data/adb/bindhosts/$i" ] ; then
 		cat "$MODPATH/$i" > "$PERSISTENT_DIR/$i"

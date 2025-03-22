@@ -2,339 +2,204 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Bindhost</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="styles.css" type="text/css">
-	<link rel="stylesheet" href="markdown.css" type="text/css">
-	<link rel="stylesheet" type="text/css" href="/mmrl/insets.css" />
-	<script type="module" crossorigin src="scripts/index.js"></script>
-	<script type="module" crossorigin src="scripts/docs.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bindhost</title>
+    <link rel="stylesheet" href="styles/styles.css" type="text/css">
+    <link rel="stylesheet" href="styles/markdown.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/mmrl/insets.css" />
+    <script type="module" crossorigin src="scripts/index.js"></script>
+    <script type="module" crossorigin src="scripts/docs.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body>
     <!-- Header -->
-	<div class="cover"></div>
-	<div class="header-block"></div>
-	<div class="header">
-		<div id="title">bindhosts <span id="version-text"></span></div>
-		<button class="docs-btn" id="mode-btn" data-type="modes">
-		    <span data-i18n="mode.button"></span><span id="mode-text">X</span>
-		</button>
-	</div>
-	
-	<!-- Start of box content -->
-	<div class="content">
-	    <!-- Action button -->
-		<div class="float">
-			<button id="actionButton" class="action-button">
-				<i class="fa fa-play"></i>
-			</button>
-		</div>
+    <div class="header">
+        <div class="title-container">
+            <span id="title">bindhosts <span id="version-text"></span></span>
+        </div>
+        <button class="docs-btn ripple-element" id="mode-btn" data-type="modes">
+            <span data-i18n="mode.button"></span><span id="mode-text">X</span>
+        </button>
+    </div>
 
-		<!-- Status box -->
-		<div class="box" id="status-box">
-			<h2 id="status-header" data-i18n="status.title"></h2>
-			<p id="status-text">Initializing</p>
-		</div>
+    <!-- Content -->
+    <div class="content constant-height">
+        <!-- Status box -->
+        <div class="box ripple-element" id="status-box">
+            <h2 id="status-header" data-i18n="status.title"></h2>
+            <p id="status-text">Initializing</p>
+        </div>
 
-        <!-- Control Panel box -->
-		<div class="box" id="control-panel">
-			<div>
-				<h2 data-i18n="control_panel.title"></h2>
-			</div>
-			<div class="control-panel">
-				<div class="toggle-list" id="language-container">
-					<i class="control-icon" id="langauge-icon">
-						<svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -1050 1000 1000" width="26px"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q83 0 155.5 31.5t127 86q54.5 54.5 86 127T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Zm0-82q26-36 45-75t31-83H404q12 44 31 83t45 75Zm-104-16q-18-33-31.5-68.5T322-320H204q29 50 72.5 87t99.5 55Zm208 0q56-18 99.5-55t72.5-87H638q-9 38-22.5 73.5T584-178ZM170-400h136q-3-20-4.5-39.5T300-480q0-21 1.5-40.5T306-560H170q-5 20-7.5 39.5T160-480q0 21 2.5 40.5T170-400Zm216 0h188q3-20 4.5-39.5T580-480q0-21-1.5-40.5T574-560H386q-3 20-4.5 39.5T380-480q0 21 1.5 40.5T386-400Zm268 0h136q5-20 7.5-39.5T800-480q0-21-2.5-40.5T790-560H654q3 20 4.5 39.5T660-480q0 21-1.5 40.5T654-400Zm-16-240h118q-29-50-72.5-87T584-782q18 33 31.5 68.5T638-640Zm-234 0h152q-12-44-31-83t-45-75q-26 36-45 75t-31 83Zm-200 0h118q9-38 22.5-73.5T376-782q-56 18-99.5 55T204-640Z" /></svg>
-					</i>
-					<span class="toggle-text" data-i18n="control_panel.language"></span>
-				</div>
-				<div class="toggle-list" id="tiles-container">
-					<i class="control-icon" id="tiles-icon">
-						<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="-60 -960 960 960" width="24px" transform="rotate(90)"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q54 0 104-17.5t92-50.5L228-676q-33 42-50.5 92T160-480q0 134 93 227t227 93Zm252-124q33-42 50.5-92T800-480q0-134-93-227t-227-93q-54 0-104 17.5T284-732l448 448Z"/></svg>
-					</i>
-					<span class="toggle-text" data-i18n="control_panel.get_tiles"></span>
-				</div>
-				<div class="toggle-list" id="update-toggle-container">
-					<i class="control-icon" id="update-icon">
-						<svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -1000 960 960" width="26px"><path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z" /></svg>
-					</i>
-					<span class="toggle-text" data-i18n="control_panel.module_update"></span>
-					<label class="toggle-switch">
-						<input type="checkbox" id="toggle-version" disabled>
-						<span class="slider round"></span>
-					</label>
-				</div>
-				<div class="toggle-list" id="action-redirect-container">
-					<i class="control-icon" id="action-icon">
-						<svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="60 -950 860 860" width="26px"><path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z" /></svg>
-					</i>
-					<span class="toggle-text" data-i18n="control_panel.action_redirect"></span>
-					<label class="toggle-switch">
-						<input type="checkbox" id="action-redirect" disabled>
-						<span class="slider round"></span>
-					</label>
-				</div>
-				<div class="toggle-list" id="cron-toggle-container">
-					<i class="control-icon" id="update-icon">
-						<svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -1050 1000 1000" width="26px"><path d="M480-120q-75 0-140.5-28.5t-114-77q-48.5-48.5-77-114T120-480q0-75 28.5-140.5t77-114q48.5-48.5 114-77T480-840q82 0 155.5 35T760-706v-94h80v240H600v-80h110q-41-56-101-88t-129-32q-117 0-198.5 81.5T200-480q0 117 81.5 198.5T480-200q105 0 183.5-68T756-440h82q-15 137-117.5 228.5T480-120Zm112-192L440-464v-216h80v184l128 128-56 56Z" /></svg>
-					</i>
-					<span class="toggle-text" data-i18n="control_panel.update_hosts_daily"></span>
-					<label class="toggle-switch">
-						<input type="checkbox" id="toggle-cron" disabled>
-						<span class="slider round"></span>
-					</label>
-				</div>
-			</div>
-		</div>
-		
-		<!-- Custom box -->
-		<div class="box">
-			<div>
-				<h2 data-i18n="custom.title"></h2>
-				<button class="help-btn" data-type="custom">
-					<i class="fa fa-question-circle"></i>
-				</button>
-			</div>
-			<div class="category-container">
-				<div class="input-box-wrapper">
-					<textarea autocapitalize="off" class="input-box" id="custom-input" type="text" placeholder="93.184.215.14 example.com"></textarea>
-				</div>
-				<button class="add-btn" id="custom-add" onclick="handleAdd('custom')">+</button>
-			</div>
-			<ul id="custom-list"></ul>
-		</div>
+        <!-- Query box -->
+        <div class="box" id="query-box">
+            <h2 id="query-header" data-i18n="query.title">Query</h2>
+            <div class="search-box">
+                <input type="text" id="query-input" placeholder="Search hosts" autocapitalize="off">
+                <div class="search-btn ripple-element">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+                </div>
+                <div class="clear-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#ccc"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                </div>
+            </div>
+            <div class="host-list">
+                <div class="host-list-header">
+                    <div class="host-list-header-ip" data-i18n="query.host_ip"></div>
+                    <div class="host-list-header-domain" data-i18n="query.host_domain"></div>
+                </div>
+                <div class="host-list-item">
+                    <!-- Host list will display here -->
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <!-- Source box -->
-		<div class="box">
-			<div>
-				<h2 data-i18n="source.title"></h2>
-				<button class="help-btn" data-type="sources">
-					<i class="fa fa-question-circle"></i>
-				</button>
-			</div>
-			<div class="category-container">
-				<div class="input-box-wrapper">
-					<textarea autocapitalize="off" class="input-box" id="sources-input" type="text" placeholder="https://adaway.org/hosts.txt"></textarea>
-				</div>
-				<button class="add-btn" id="sources-add" onclick="handleAdd('sources')">+</button>
-			</div>
-			<ul id="sources-list"></ul>
-		</div>
-
-        <!-- Blacklist box -->
-		<div class="box">
-			<div>
-				<h2 data-i18n="blacklist.title"></h2>
-				<button class="help-btn" data-type="blacklist">
-					<i class="fa fa-question-circle"></i>
-				</button>
-			</div>
-			<div class="category-container">
-				<div class="input-box-wrapper">
-					<textarea autocapitalize="off" class="input-box" id="blacklist-input" type="text" placeholder="online-casino.com"></textarea>
-				</div>
-				<button class="add-btn" id="blacklist-add" onclick="handleAdd('blacklist')">+</button>
-			</div>
-			<ul id="blacklist-list"></ul>
-		</div>
-
-        <!-- Whitelist box -->
-		<div class="box">
-			<div>
-				<h2 data-i18n="whitelist.title"></h2>
-				<button class="help-btn" data-type="whitelist">
-					<i class="fa fa-question-circle"></i>
-				</button>
-			</div>
-			<div class="category-container">
-				<div class="input-box-wrapper">
-					<textarea autocapitalize="off" class="input-box" id="whitelist-input" type="text" placeholder="s.youtube.com"></textarea>
-				</div>
-				<button class="add-btn" id="whitelist-add" onclick="handleAdd('whitelist')">+</button>
-			</div>
-			<ul id="whitelist-list"></ul>
-		</div>
-	</div>
-    <!-- End of box content -->
-
-    <!-- Help overlay -->
-	<div id="language-help" class="overlay">
-		<div class="overlay-content">
-			<div>
-				<h2 data-i18n="control_panel.language"></h2>
-				<button class="close-btn" onclick="closeOverlay('language-help')">&#x2715;</button>
-			</div>
-			<div class="language-content">
-    			<div class="language-menu"></div>
-    			<button class="docs-btn" id="translate-btn" data-type="translate">
-    			    <div class="language-improve" id="bad-translation" data-i18n="control_panel.bad_translation"></div>
-    			    <div class="language-improve" id="add-language" data-i18n="control_panel.add_language"></div>
-    			</button>
-			</div>
-		</div>
-	</div>
-	<div id="custom-help" class="overlay">
-		<div class="overlay-content">
-			<button class="close-btn" onclick="closeOverlay('custom-help')">&#x2715;</button>
-			<h2 data-i18n="custom.title"></h2>
-			<ul>
-				<li data-i18n="custom.guide1"></li>
-				<li data-i18n="custom.example"><br>1.1.1.1 one.one.one.one<br>93.184.215.14 example.com</li>
-				<li data-i18n="custom.warning"></li>
-			</ul>
-		</div>
-	</div>
-	<div id="sources-help" class="overlay">
-		<div class="overlay-content">
-			<button class="close-btn" onclick="closeOverlay('sources-help')">&#x2715;</button>
-			<h2 data-i18n="source.title"></h2>
-			<ul>
-				<li data-i18n="source.guide1"></li>
-				<li data-i18n="source.format"><br>127.0.0.1 some.ads.site<br>0.0.0.0 some.ads.site</li>
-				<li data-i18n="source.example"><br>https://adaway.org/hosts.txt<br>https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardDNS.txt</li>
-				<br>
-				<li data-i18n="source.guide2"></li>
-				<li data-i18n="source.format"><br>186.2.163.20 nyaa.si</li>
-				<li data-i18n="source.example"><br>https://raw.githubusercontent.com/bebasid/bebasid/refs/heads/master/releases/hosts</li>
-			</ul>
-			<button class="docs-btn" id="source-btn" data-type="source" data-i18n="source.source_page"></button>
-		</div>
-	</div>
-	<div id="blacklist-help" class="overlay">
-		<div class="overlay-content">
-			<button class="close-btn" onclick="closeOverlay('blacklist-help')">&#x2715;</button>
-			<h2 data-i18n="blacklist.title"></h2>
-			<ul>
-				<li data-i18n="blacklist.guide1"></li>
-				<li data-i18n="blacklist.example"><br>host.to.block</li>
-			</ul>
-		</div>
-	</div>
-	<div id="whitelist-help" class="overlay">
-		<div class="overlay-content">
-			<button class="close-btn" onclick="closeOverlay('whitelist-help')">&#x2715;</button>
-			<h2 data-i18n="whitelist.title"></h2>
-			<ul>
-				<li data-i18n="whitelist.guide1"></li>
-				<li data-i18n="whitelist.example"><br>host.not.to.block</li>
-			</ul>
-		</div>
-	</div>
-
-	<!-- Docs overlay -->
-	<div id="source-docs" class="docs">
-		<div class="docs-content">
-			<button class="close-docs-btn" onclick="closeOverlay('source-docs')">&#x2715;</button>
-			<div class="documents">
-			    <div id="source-content">Loading...</div>
-			    <div class="credit-marked">Markdown Parser by markedjs/marked</div>
-			</div>
-		</div>
-	</div>
-    <div id="translate-docs" class="docs">
-		<div class="docs-content">
-			<button class="close-docs-btn" onclick="closeOverlay('translate-docs')">&#x2715;</button>
-			<div class="documents">
-			    <div id="translate-content">Loading...</div>
-			    <div class="credit-marked">Markdown Parser by markedjs/marked</div>
-			</div>
-		</div>
-	</div>
-	<div id="modes-docs" class="docs">
-		<div class="docs-content">
-			<button class="close-docs-btn" onclick="closeOverlay('modes-docs')">&#x2715;</button>
-			<div class="documents">
-			    <div id="modes-content">Loading...</div>
-			    <div class="credit-marked">Markdown Parser by markedjs/marked</div>
-			</div>
-		</div>
-	</div>
+    <!-- Docs overlay -->
+    <div id="modes-docs" class="docs">
+        <div class="docs-content">
+            <button class="close-docs-btn" onclick="closeOverlay('modes-docs')">&#x2715;</button>
+            <div class="documents">
+                <div id="modes-content">Loading...</div>
+                <div class="credit-marked">Markdown Parser by markedjs/marked</div>
+            </div>
+        </div>
+    </div>
 
     <!-- Mode menu overlay -->
-	<div id="mode-menu" class="overlay">
-		<div class="overlay-content">
-			<button class="close-btn" onclick="closeOverlay('mode-menu')">&#x2715;</button>
-			<h2 data-i18n="mode.title"></h2>
-			<form id="mode-options">
-				<label class="custom-radio">
-					<input type="radio" name="mode" value="0">
-					<span class="radio-circle"></span>
-					<span class="radio-label"><span data-i18n="mode.button"></span> 0<br><small>Default</small></span>
-				</label>
-				<label class="custom-radio">
-					<input type="radio" name="mode" value="1">
-					<span class="radio-circle"></span>
-					<span class="radio-label"><span data-i18n="mode.button"></span>
-						1<br><small>ksu_susfs_bind</small></span>
-				</label>
-				<label class="custom-radio">
-					<input type="radio" name="mode" value="2">
-					<span class="radio-circle"></span>
-					<span class="radio-label"><span data-i18n="mode.button"></span> 2<br><small>plain
-							bindhosts</small></span>
-				</label>
-				<label class="custom-radio">
-					<input type="radio" name="mode" value="3">
-					<span class="radio-circle"></span>
-					<span class="radio-label"><span data-i18n="mode.button"></span> 3<br><small>apatch_hfr,
-							hosts_file_redirect</small></span>
-				</label>
-				<label class="custom-radio">
-					<input type="radio" name="mode" value="4">
-					<span class="radio-circle"></span>
-					<span class="radio-label"><span data-i18n="mode.button"></span>
-						4<br><small>zn_hostsredirect</small></span>
-				</label>
-				<label class="custom-radio">
-					<input type="radio" name="mode" value="5">
-					<span class="radio-circle"></span>
-					<span class="radio-label"><span data-i18n="mode.button"></span>
-						5<br><small>ksu_susfs_open_redirect</small></span>
-				</label>
-				<label class="custom-radio">
-					<input type="radio" name="mode" value="6">
-					<span class="radio-circle"></span>
-					<span class="radio-label"><span data-i18n="mode.button"></span>
-						6<br><small>ksu_source_mod</small></span>
-				</label>
-				<label class="custom-radio">
-					<input type="radio" name="mode" value="7">
-					<span class="radio-circle"></span>
-					<span class="radio-label"><span data-i18n="mode.button"></span>
-						7<br><small>generic_overlay</small></span>
-				</label>
-				<label class="custom-radio">
-					<input type="radio" name="mode" value="8">
-					<span class="radio-circle"></span>
-					<span class="radio-label"><span data-i18n="mode.button"></span>
-						8<br><small>ksu_susfs_overlay</small></span>
-				</label>
-				<label class="custom-radio">
-					<input type="radio" name="mode" value="9">
-					<span class="radio-circle"></span>
-					<span class="radio-label"><span data-i18n="mode.button"></span>
-						9<br><small>ksu_susfs_bind_kstat</small></span>
-				</label>
-			</form>
-			<div class="reference-reset">
-			    <button class="docs-btn" id="learn-btn" data-type="modes" data-i18n="mode.detail"></button>
-				<button id="reset-mode" data-i18n="mode.reset"></button>
-			</div>
-		</div>
-	</div>
+    <div id="mode-menu" class="overlay">
+        <div class="overlay-content">
+            <button class="close-btn">&#x2715;</button>
+            <h2 data-i18n="mode.title"></h2>
+            <form id="mode-options">
+                <label class="custom-radio">
+                    <input type="radio" name="mode" value="0">
+                    <span class="radio-circle"></span>
+                    <span class="radio-label"><span data-i18n="mode.button"></span> 0<br>
+                    <small>Default</small></span>
+                </label>
+                <label class="custom-radio">
+                    <input type="radio" name="mode" value="1">
+                    <span class="radio-circle"></span>
+                    <span class="radio-label"><span data-i18n="mode.button"></span>
+                        1<br><small>ksu_susfs_bind</small></span>
+                </label>
+                <label class="custom-radio">
+                    <input type="radio" name="mode" value="2">
+                    <span class="radio-circle"></span>
+                    <span class="radio-label"><span data-i18n="mode.button"></span> 2<br>
+                    <small>plain bindhosts</small></span>
+                </label>
+                <label class="custom-radio">
+                    <input type="radio" name="mode" value="3">
+                    <span class="radio-circle"></span>
+                    <span class="radio-label"><span data-i18n="mode.button"></span> 3<br>
+                    <small>apatch_hfr, hosts_file_redirect</small></span>
+                </label>
+                <label class="custom-radio">
+                    <input type="radio" name="mode" value="4">
+                    <span class="radio-circle"></span>
+                    <span class="radio-label"><span data-i18n="mode.button"></span> 4<br>
+                    <small>zn_hostsredirect</small></span>
+                </label>
+                <label class="custom-radio">
+                    <input type="radio" name="mode" value="5">
+                    <span class="radio-circle"></span>
+                    <span class="radio-label"><span data-i18n="mode.button"></span> 5<br>
+                    <small>ksu_susfs_open_redirect</small></span>
+                </label>
+                <label class="custom-radio">
+                    <input type="radio" name="mode" value="6">
+                    <span class="radio-circle"></span>
+                    <span class="radio-label"><span data-i18n="mode.button"></span> 6<br>
+                    <small>ksu_source_mod</small></span>
+                </label>
+                <label class="custom-radio">
+                    <input type="radio" name="mode" value="7">
+                    <span class="radio-circle"></span>
+                    <span class="radio-label"><span data-i18n="mode.button"></span> 7<br>
+                    <small>generic_overlay</small></span>
+                </label>
+                <label class="custom-radio">
+                    <input type="radio" name="mode" value="8">
+                    <span class="radio-circle"></span>
+                    <span class="radio-label"><span data-i18n="mode.button"></span> 8<br>
+                    <small>ksu_susfs_overlay</small></span>
+                </label>
+                <label class="custom-radio">
+                    <input type="radio" name="mode" value="9">
+                    <span class="radio-circle"></span>
+                    <span class="radio-label"><span data-i18n="mode.button"></span> 9<br>
+                    <small>ksu_susfs_bind_kstat</small></span>
+                </label>
+            </form>
+            <div class="reference-reset">
+                <button class="docs-btn ripple-element" id="learn-btn" data-type="modes" data-i18n="mode.detail"></button>
+                <button class="ripple-element" id="reset-mode" data-i18n="mode.reset"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MMRL Permission Overylay -->
+    <div class="overlay" id="mmrl-permission-overlay">
+        <div class="overlay-content">
+            <h2>MMRL Permission Request</h2>
+            <ol class="ol-numbering">
+                <li>Settings</li>
+                <li>Security</li>
+                <li>Allow JavaScript API</li>
+                <li>bindhosts</li>
+                <li>Enable both option</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Rick Roll overlay (1st April Easter egg) -->
+    <div class="overlay" id="rick-roll">
+        <div class="rr-content">
+            <div class="rr-image-box">
+                <div class="youtube-spinner"></div>
+                <image id="rick-roll-image" src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&amp;rs=AOn4CLDRxusbm2_TGTnDWEIhBTYW2cUQkw"></image>
+            </div>
+            <button class="close-rr-btn">
+                <span id="rr-coundown">5</span>
+                <span>&#10072;</span>
+                <span>&#x2715;</span>
+            </button>
+        </div>
+    </div>
 
     <!-- Prompt -->
-	<div id="prompt" class="prompt"></div>
+    <div id="prompt" class="prompt"></div>
 
     <!-- Footer -->
-	<div class="footer">
-		<div id="module">bindhosts</div>
-		<div id="webui">WebUI by KOWX712</div>
-	</div>
+    <div class="footer">
+        <a class="footer-btn">
+            <div class="footer-btn-icon focused-footer-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></svg>
+            </div>
+            <div class="footer-btn-text">
+                <span>Home</span>
+            </div>
+        </a>
+        <a class="footer-btn" href="hosts.html">
+            <div class="footer-btn-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M160-120q-33 0-56.5-23.5T80-200v-560q0-33 23.5-56.5T160-840h200q33 0 56.5 23.5T440-760v560q0 33-23.5 56.5T360-120H160Zm440 0q-33 0-56.5-23.5T520-200v-560q0-33 23.5-56.5T600-840h200q33 0 56.5 23.5T880-760v560q0 33-23.5 56.5T800-120H600Zm-440-80h200v-560H160v560Zm440 0h200v-560H600v560ZM200-360h120v-80H200v80Zm440 0h120v-80H640v80ZM200-480h120v-80H200v80Zm440 0h120v-80H640v80ZM200-600h120v-80H200v80Zm440 0h120v-80H640v80ZM160-200h200-200Zm440 0h200-200Z"/></svg>
+            </div>
+            <div class="footer-btn-text">
+                <span>Hosts</span>
+            </div>
+        </a>
+        <a class="footer-btn" href="more.html">
+            <div class="footer-btn-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+            </div>
+            <div class="footer-btn-text">
+                <span>More</span>
+            </div>
+        </a>
+    </div>
 </body>
 
 </html>

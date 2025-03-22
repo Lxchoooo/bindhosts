@@ -12,8 +12,21 @@
         "adaway": "Resetujte hosts v Adaway před pokračováním",
         "dev_opt": "Možnost vývojáře povolena",
         "dev_opt_true": "Možnost vývojáře je již povolena",
-        "dev_opt_fail": "Chyba při povolování možnosti vývojáře",
-        "reboot": "Restartujte zařízení, aby se změny projevily, klepněte pro restart"
+        "reboot": "Restartujte zařízení, aby se změny projevily, klepněte pro restart",
+        "save": "Uložit",
+        "saved": "Soubor uložen do",
+        "save_fail": "Nepodařilo se uložit soubor",
+        "file_too_large": "Jen přejmenování je podporováno na velkých souborech",
+        "file_name_empty": "Název souboru nesmí být prázdný",
+        "show_all": "Zobrazit vše",
+        "more": "více"
+    },
+    "query": {
+        "title": "Dotaz na hostitele",
+        "host_ip": "IP",
+        "host_domain": "Doména",
+        "remove_prompt": "Povoleno",
+        "remove_error": "Nepodařilo se přidat do povolených"
     },
     "control_panel": {
         "title": "Ovládací panel",
@@ -39,8 +52,12 @@
         "title": "Vlastní pravidla",
         "guide1": "Přidejte vlastní přesměrování zde",
         "example": "Příklad:",
+        "format": "Formát:",
         "warning": "UPOZORNĚNÍ: Vlastní pravidla se načítají při spuštění i resetu!",
         "prompt_fail": "již existuje ve vlastním pravidle"
+    },
+    "import_custom": {
+        "title": "Importovat vlastní pravidla"
     },
     "source": {
         "title": "Zdroje",
@@ -63,10 +80,34 @@
         "example": "Příklad:",
         "prompt_fail": "již existuje na whitelistu"
     },
+    "sources_whitelist": {
+        "title": "Zdroje Whitelistu",
+        "guide1": "Přidejte zdroje whitelistu zde",
+        "format": "Formát:",
+        "example": "Příklad:",
+        "prompt_fail": "již existuje ve zdroji whitelistu"
+    },
     "mode": {
         "button": "Režim",
         "title": "Provozní režim",
         "detail": "Zjistit více",
         "reset": "Reset (automatický)"
+    },
+    "more": {
+        "title": "Více",
+        "documents": "Dokumenty",
+        "sources": "Zdroje",
+        "usage": "Použití",
+        "modes": "Režimy",
+        "hiding": "Skrýt",
+        "faq": "FAQ",
+        "support": "Podpora",
+        "support_issue": "Nahlásit problém"
+    },
+    "confirmation": {
+        "title": "Potvrdit odstranění?",
+        "message": "Opravdu chcete odstranit",
+        "cancel": "Zrušit",
+        "remove": "Odstranit"
     }
 }
